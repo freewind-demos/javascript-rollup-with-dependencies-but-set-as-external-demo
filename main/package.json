@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "demo": "node main.js"
+  },
+  "dependencies": {
+    "javascript-rollup-with-dependencies-but-set-as-external-demo--hello": "0.0.3"
+  }
+}

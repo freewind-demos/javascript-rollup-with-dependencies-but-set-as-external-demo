@@ -1,22 +1,26 @@
-JavaScript Rollup Demo
-======================
+JavaScript Rollup With Dependencies But Set As "external" Demo
+==============================================================
 
-Rollup是一个打包工具，它假定代码只使用ES6中的`import from`标准，然后把关联的代码打包成指定的模块系统。
+这个Demo对应的问题是，如果一个package：
+
+1. 使用了某个第三方库，比如`force-number`，并放在`package.json`的`dependencies`中
+3. 使用rollup打包，并且在`rollup.config.js`中，把`force-number`放在了`external`中
+
+那么，当该package发布以后，别人使用它时，是否需要在`package.json`中声明对`force-number`的引用？
+
+答案是“不用”。跟rollup没关系，而跟把`force-number`放在`dependencies`还是`devDependencies`中有关系：
+
+1. 如果放在`dependencies`中，则不需要再次声明
+2. 如果放在`devDependencies`中，则需要
+
+该demo下有两个project：
+
+1. `hello`: 是一个用rollup来打包的package，它已经通过`npm publish`发布到了npm server上
+2. `main`: 将使用`hello`来验证是否还需要再次声明`force-number`的依赖
 
 ```
+cd main
 npm install
 npm run demo
 ```
 
-将会生成`bundle.js`文件。
-
-`rollup.config.js` -> `external`
---------------------------------
-
-在代码中，如果使用了第三方类库，比如`lodash`，需要在rollup的命令中声明一下`--external lodash`，这样将不会产生下面的警告：
-
-```
-(!) Unresolved dependencies
-https://github.com/rollup/rollup/wiki/Troubleshooting#treating-module-as-external-dependency
-lodash (imported by hello.js)
-```

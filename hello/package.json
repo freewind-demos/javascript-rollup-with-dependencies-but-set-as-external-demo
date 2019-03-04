@@ -1,0 +1,14 @@
+{
+  "name": "javascript-rollup-with-dependencies-but-set-as-external-demo--hello",
+  "version": "0.0.3",
+  "scripts": {
+    "bundle": "rollup -c"
+  },
+  "main": "dist/hello.js",
+  "dependencies": {
+    "force-number": "1.1.0"
+  },
+  "devDependencies": {
+    "rollup": "0.65.0"
+  }
+}
